@@ -1,0 +1,10 @@
+name: CoreAPI
+version: '${project.version}'
+main: me.cryptidyy.coreapi.Main
+api-version: '1.15'
+load: STARTUP
+authors: [ Cryptidyy ]
+description: Spigot side of core plugin, interacting with SQL.
+
+commands:
+  spigotcmd:
