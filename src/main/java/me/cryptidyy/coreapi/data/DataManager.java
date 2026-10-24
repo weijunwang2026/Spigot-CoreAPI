@@ -64,30 +64,22 @@ public class DataManager {
         }
     }
 
+    // Saves the default config if doesn't exist and sets dataConfig
     public void saveDefaultConfig()
     {
-        if(configFile == null)
-            configFile = new File(plugin.getDataFolder(), filename);
+        configFile = new File(plugin.getDataFolder(), filename);
 
         if(!configFile.exists())
         {
-            //plugin.saveResource(filename, false);
-            try {
-                configFile.createNewFile();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+            plugin.saveResource(filename, false);
         }
 
         dataConfig = YamlConfiguration.loadConfiguration(configFile);
-
-        InputStream defaultStream = plugin.getResource(filename);
-
-        if(defaultStream != null)
-        {
-            YamlConfiguration defaultConfig = YamlConfiguration.loadConfiguration(new InputStreamReader(defaultStream));
-            this.dataConfig.setDefaults(defaultConfig);
-        }
+//        InputStream defaultStream = plugin.getResource(filename);
+//        if(defaultStream != null)
+//        {
+//            YamlConfiguration defaultConfig = YamlConfiguration.loadConfiguration(new InputStreamReader(defaultStream));
+//            this.dataConfig.setDefaults(defaultConfig);
+//        }
     }
 }

@@ -1,5 +1,8 @@
 package me.cryptidyy.coreapi.sql;
 
+import me.cryptidyy.coreapi.Main;
+import me.cryptidyy.coreapi.data.DataManager;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -7,14 +10,28 @@ import java.sql.SQLException;
 public class SQLConnection {
 
     private final String TABLE_PREFIX = "cc_";
-    private String host = "localhost";
-    private String port = "3306"; // 3308
-    private String database = "communitcraft";
-    private String username = "root";
-    private String password = "cryptidyy";
+    private final String host;
+    private final String port; // 3308
+    private final String database;
+    private final String username;
+    private final String password;
 
     private Connection connection;
 
+    public SQLConnection(Main plugin) throws Exception
+    {
+        DataManager data = new DataManager(plugin, "mysql.yml");
+        host = data.getConfig().getString("host");
+        port = data.getConfig().getString("port");
+        database = data.getConfig().getString("database");
+        username = data.getConfig().getString("username");
+        password = data.getConfig().getString("password");
+
+        if (host == null || port == null || database == null || username == null || password == null)
+        {
+            throw new Exception();
+        }
+    }
     public boolean isConnected()
     {
         return (connection != null);
