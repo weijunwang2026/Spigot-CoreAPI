@@ -24,7 +24,7 @@ public class MyQueueListener extends QueueListener {
 }
 ```
 
-### Handling player/parties joining ###
+### Handling player/parties joining and rejoining ###
 
 ```java
 public class MyJoinHandler extends JoinHandler {
@@ -45,3 +45,11 @@ public class MyJoinHandler extends JoinHandler {
 
 }
 ```
+
+### Updating server status ###
+
+```java
+API.getInstance().getStatusUpdater().setStarted(isServerStarted);
+API.getInstance().getStatusUpdater().setWaiting(isAcceptingQueues);
+```
+
